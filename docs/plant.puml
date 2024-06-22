@@ -1,0 +1,290 @@
+@startuml
+set namespaceSeparator ::
+
+class "icte21_gpt_ocr::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "icte21_gpt_ocr::main.dart::MyApp"
+
+class "icte21_gpt_ocr::Screen::chat_docs_page.dart::ChatDocsWindow" {
+  +String builtPrompt
+  +String keyToLoad
+  +int documentId
+  +_ChatDocsWindowState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::chat_docs_page.dart::ChatDocsWindow"
+
+class "icte21_gpt_ocr::Screen::chat_docs_page.dart::_ChatDocsWindowState" {
+  -TextEditingController _controller
+  -List<Message> _messages
+  +String? responseText
+  +String? requestText
+  +bool showSaveOption
+  -bool _isBusy
+  +int documentId
+  -GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey
+  +void initState()
+  -Future<void> _initializeDocumentId()
+  +Future<String> chunkIt()
+  -void _loadChatHistory()
+  -void _handleSendMessage()
+  -Future<String> _getSupabaseChatResponse()
+  -Future<void> _saveChat()
+  -Future<void> _loadChat()
+  +Widget build()
+}
+
+"icte21_gpt_ocr::Screen::chat_docs_page.dart::_ChatDocsWindowState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::chat_docs_page.dart::_ChatDocsWindowState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldMessengerState>"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::chat_docs_page.dart::_ChatDocsWindowState"
+
+class "icte21_gpt_ocr::Screen::chat_page.dart::ChatWindow" {
+  +String builtPrompt
+  +String keyToLoad
+  +_ChatWindowState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::chat_page.dart::ChatWindow"
+
+class "icte21_gpt_ocr::Screen::chat_page.dart::_ChatWindowState" {
+  -TextEditingController _controller
+  -List<Message> _messages
+  +String? responseText
+  +String? requestText
+  +bool showSaveOption
+  -bool _isBusy
+  -GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey
+  +void initState()
+  -void _loadChatHistory()
+  -void _handleSendMessage()
+  -Future<String> _getSupabaseChatResponse()
+  -Future<void> _saveChat()
+  -Future<void> _loadChat()
+  +Widget build()
+}
+
+"icte21_gpt_ocr::Screen::chat_page.dart::_ChatWindowState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::chat_page.dart::_ChatWindowState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldMessengerState>"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::chat_page.dart::_ChatWindowState"
+
+class "icte21_gpt_ocr::Screen::chat_scanned_document.dart::ChatScannedDocumentPage" {
+  +_ChatScannedDocumentPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::chat_scanned_document.dart::ChatScannedDocumentPage"
+
+class "icte21_gpt_ocr::Screen::chat_scanned_document.dart::_ChatScannedDocumentPageState" {
+  -Future<List<Map<String, dynamic>>> _documentsFuture
+  -TextEditingController _metadataController
+  -GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey
+  -PostgrestFilterBuilder<List<Map<String, dynamic>>> _future
+  +void initState()
+  -void _showErrorSnackBar()
+  -Future<List<Map<String, dynamic>>> _fetchDocuments()
+  +Widget build()
+  -void _navigateToDocs()
+}
+
+"icte21_gpt_ocr::Screen::chat_scanned_document.dart::_ChatScannedDocumentPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::chat_scanned_document.dart::_ChatScannedDocumentPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldMessengerState>"
+"icte21_gpt_ocr::Screen::chat_scanned_document.dart::_ChatScannedDocumentPageState" o-- "postgrest::src::postgrest_builder.dart::PostgrestFilterBuilder<List<Map<String, dynamic>>>"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::chat_scanned_document.dart::_ChatScannedDocumentPageState"
+
+class "icte21_gpt_ocr::Screen::edit_chat_page.dart::EditChatPage" {
+  +String keyToEdit
+  +List<Message> initialMessages
+  +_EditChatPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::edit_chat_page.dart::EditChatPage"
+
+class "icte21_gpt_ocr::Screen::edit_chat_page.dart::_EditChatPageState" {
+  -List<Message> _messages
+  +void initState()
+  -Future<void> _addMessage()
+  -Future<void> _showMessageEditor()
+  -void _removeMessage()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::edit_chat_page.dart::_EditChatPageState"
+
+class "icte21_gpt_ocr::Screen::home_page.dart::MyOcrApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "icte21_gpt_ocr::Screen::home_page.dart::MyOcrApp"
+
+class "icte21_gpt_ocr::Screen::home_page.dart::MyHomePage" {
+  +String title
+  +State<MyHomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::home_page.dart::MyHomePage"
+
+class "icte21_gpt_ocr::Screen::home_page.dart::_MyHomePageState" {
+  +String text
+  +StreamController<String> controller
+  +TextEditingController textEditingController
+  -bool _isConfirmed
+  -SupabaseManager _supabaseManager
+  -List<String> _paths
+  +void setText()
+  -Future<void> _showPrivacyPolicy()
+  +void dispose()
+  -Future<void> _showChatList()
+  +void handleClick()
+  -Future<bool> _requestPermissions()
+  +Widget build()
+  -Widget _styledButton()
+}
+
+"icte21_gpt_ocr::Screen::home_page.dart::_MyHomePageState" o-- "dart::async::StreamController<String>"
+"icte21_gpt_ocr::Screen::home_page.dart::_MyHomePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::home_page.dart::_MyHomePageState" o-- "icte21_gpt_ocr::Utils::supabase_utils.dart::SupabaseManager"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::home_page.dart::_MyHomePageState"
+
+class "icte21_gpt_ocr::Screen::login_page.dart::LoginPage" {
+  +_LoginPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::login_page.dart::LoginPage"
+
+class "icte21_gpt_ocr::Screen::login_page.dart::_LoginPageState" {
+  -SupabaseManager _supabaseClient
+  -TextEditingController _emailController
+  -TextEditingController _passwordController
+  -GlobalKey<FormState> _formKey
+  -bool _isLoading
+  -bool _isPrivacyPolicyAccepted
+  +void dispose()
+  -Future<void> _showPrivacyPolicy()
+  +Widget build()
+}
+
+"icte21_gpt_ocr::Screen::login_page.dart::_LoginPageState" o-- "icte21_gpt_ocr::Utils::supabase_utils.dart::SupabaseManager"
+"icte21_gpt_ocr::Screen::login_page.dart::_LoginPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::login_page.dart::_LoginPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::login_page.dart::_LoginPageState"
+
+class "icte21_gpt_ocr::Screen::options_page.dart::OptionsPage" {
+  +String scannedText
+  +_OptionsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::options_page.dart::OptionsPage"
+
+class "icte21_gpt_ocr::Screen::options_page.dart::_OptionsPageState" {
+  +String selectedAction
+  +TextEditingController freePromptController
+  +TextEditingController toneController
+  +TextEditingController writingStyleController
+  +TextEditingController outputLanguageController
+  +String requestText
+  -String? _selectedOption
+  +List<String> writingStyles
+  +List<String> tones
+  +List<String> languages
+  +String? selectedOutputLanguage
+  +String? selectedWritingStyle
+  +String? selectedTone
+  -void _navigateToChat()
+  -void _navigateToDocs()
+  -String _buildPrompt()
+  +Widget build()
+  -void _onOptionSelected()
+  -Widget _styledButton()
+}
+
+"icte21_gpt_ocr::Screen::options_page.dart::_OptionsPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::options_page.dart::_OptionsPageState"
+
+class "icte21_gpt_ocr::Screen::recognization_page.dart::RecognizePage" {
+  +List<String> paths
+  +int initialIndex
+  +State<RecognizePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::recognization_page.dart::RecognizePage"
+
+class "icte21_gpt_ocr::Screen::recognization_page.dart::_RecognizePageState" {
+  -bool _isBusy
+  -int _currentIndex
+  -List<TextEditingController> _controllers
+  -Future<void> _addPage()
+  -Future<void> _handleAddPage()
+  +void initState()
+  -void _navigateToOptions()
+  -void _nextPage()
+  -void _previousPage()
+  +Widget build()
+  +void processImage()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::recognization_page.dart::_RecognizePageState"
+
+class "icte21_gpt_ocr::Screen::sign_page.dart::SignUpPage" {
+  +_SignUpPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Screen::sign_page.dart::SignUpPage"
+
+class "icte21_gpt_ocr::Screen::sign_page.dart::_SignUpPageState" {
+  -SupabaseManager _supabaseClient
+  -TextEditingController _emailController
+  -TextEditingController _passwordController
+  -GlobalKey<FormState> _formKey
+  -bool _isLoading
+  +void dispose()
+  +Widget build()
+}
+
+"icte21_gpt_ocr::Screen::sign_page.dart::_SignUpPageState" o-- "icte21_gpt_ocr::Utils::supabase_utils.dart::SupabaseManager"
+"icte21_gpt_ocr::Screen::sign_page.dart::_SignUpPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"icte21_gpt_ocr::Screen::sign_page.dart::_SignUpPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Screen::sign_page.dart::_SignUpPageState"
+
+class "icte21_gpt_ocr::Utils::message.dart::Message" {
+  +String role
+  +String content
+  +Map<String, dynamic> toJson()
+}
+
+class "icte21_gpt_ocr::Utils::message_history.dart::ChatHistory" {
+  {static} +Future<void> saveChatHistory()
+  {static} +Future<List<Message>> loadChatHistory()
+  {static} +Future<List<String>> listSavedChats()
+  {static} +Future<List<String>> getAvailableKeys()
+  {static} +Future<void> editChatHistory()
+  {static} +Future<void> deleteChatHistory()
+}
+
+class "icte21_gpt_ocr::Utils::supabase_utils.dart::SupabaseManager" {
+  +SupabaseClient client
+  +Future<void> signUpUser()
+  +Future<void> signInUser()
+  +Future<bool> signInWithGoogle()
+  +Future<void> logout()
+}
+
+"icte21_gpt_ocr::Utils::supabase_utils.dart::SupabaseManager" o-- "supabase::src::supabase_client.dart::SupabaseClient"
+
+class "icte21_gpt_ocr::Widgets::chat_selecting.dart::ChatListDialog" {
+  +_ChatListDialogState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "icte21_gpt_ocr::Widgets::chat_selecting.dart::ChatListDialog"
+
+class "icte21_gpt_ocr::Widgets::chat_selecting.dart::_ChatListDialogState" {
+  +List<String> keys
+  +void initState()
+  -void _loadKeys()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "icte21_gpt_ocr::Widgets::chat_selecting.dart::_ChatListDialogState"
+
+
+@enduml

@@ -1,0 +1,25 @@
+Privacy Policy
+
+Last updated: 6.5.2023
+
+This Privacy Policy describes how we, collect, use, and protect your personal information when you use our application (the "Service"). By registering for an account with us and accepting our End User License Agreement (EULA), you agree to the terms of this Privacy Policy.
+
+Collection of Information:
+When you create an account, we collect personal information such as your name, email address, and any other necessary details for authentication and authorization purposes. We may also collect usage data to provide you with a better user experience and improve our Service.
+As our Service uses your device's camera for Optical Character Recognition (OCR) processing, we require your consent to access this sensor. If you do not provide consent, the feature will not be available.
+
+Use of Information:
+We use the personal information we collect for authentication, authorization, and providing a history of your interactions with the Service. We do not use your sensitive personal data for any purpose other than those stated in this Privacy Policy.
+Our application logs prompt history and responses from GPT to provide a conversation feature similar to ChatGPT. This information is only used as a "Continuation token" to offer the feature and is not shared with other third parties.
+
+Third-Party Service Providers:
+Our application combines existing solutions, including the ChatGPT API. While the ChatGPT API typically stores clients' prompts for 30 days due to moderation. We won't log your prompts if you are using the official full release of this service but prompts of the prototype will be logged for service improvement.
+
+Security:
+We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, disclosure, alteration, or destruction.
+
+Changes to this Privacy Policy:
+We may update our Privacy Policy from time to time. Any changes will be effective when posted on this page. We will notify you of significant changes by email or through the Service.
+
+Contact Us:
+If you have any questions or concerns about our Privacy Policy, please contact us at soslak22@student.aau.dk.
